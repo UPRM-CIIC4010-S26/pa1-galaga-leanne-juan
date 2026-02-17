@@ -1,6 +1,8 @@
 #include "Program.hpp"
 
 Program::Program() {
+    // Player ship movement bounds.
+    // Player is 10 units tall.
     Background::sideWalls = std::pair<HitBox, HitBox>{ 
         HitBox(0, 0, 10, GetScreenHeight()), 
         HitBox(GetScreenWidth() - 10, 0, 10, GetScreenHeight())
