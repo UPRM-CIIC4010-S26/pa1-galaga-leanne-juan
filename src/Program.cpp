@@ -19,9 +19,21 @@ Program::Program() {
         });
 
     for (int i = 0; i < 30; i++) {
-        float x = 250 + 50 * i;
-        float y = 200 + 50 * i;
 
+        // x resett
+        float x = 250 + 50 * (i % 10);
+
+        // y increase 
+        float y = 200;
+
+        if(i > 9 && i <= 19){
+            y += 50;
+        }
+
+        else if(i > 19){
+            y += 100;
+        }
+        
         Enemy::enemies.push_back(std::pair<std::pair<float, float>, Enemy*> {
             std::pair<float, float>{x, y}, 
             new StdEnemy(x, y)
