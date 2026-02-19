@@ -36,6 +36,7 @@ class Program {
         void KeyInputs();
         void PlayerReset();
         void Reset();
+        void SpawnEnemiesOnGameStart();
           
         ~Program() {}
 };
