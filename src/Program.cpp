@@ -7,7 +7,10 @@ Program::Program() {
         HitBox(0, 0, 10, GetScreenHeight()), 
         HitBox(GetScreenWidth() - 10, 0, 10, GetScreenHeight())
     };
+
+    //=========================== Phase 1.3 ===========================
     SpawnEnemiesOnGameStart();
+    //=========================== Phase 1.3 ===========================
 }
 
 void Program::Update() {
@@ -179,6 +182,7 @@ void Program::Reset() {
     lives = 3;
 }
 
+//=========================== Phase 1.3 ===========================
 void Program::SpawnEnemiesOnGameStart() {
     Enemy::enemies.push_back(std::pair<std::pair<float, float>, Enemy*> {
             std::pair<float, float>{350, 150}, 
@@ -212,3 +216,4 @@ void Program::SpawnEnemiesOnGameStart() {
         });
     }
 }
+//=========================== Phase 1.3 ===========================
