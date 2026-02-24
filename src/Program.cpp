@@ -115,7 +115,7 @@ void Program::Draw()
         if (p.second)
             p.second->draw();
 
-    DrawText(TextFormat("%i", score), 500 - 20, 20, 50, WHITE);
+    DrawScore(TextFormat("%i", score), (GetScreenWidth() / 2), 20, 50, 2, WHITE);
 
     if (startup)
         DrawStartup();
@@ -178,7 +178,7 @@ void Program::ManageEnemyRespawns()
     }
 }
 
-void Program::DrawStartup()
+void Program::DrawStartup() // Draw start screen
 {
     DrawRectangle(0, 0, (float)GetScreenWidth(), (float)GetScreenHeight(), Color{0, 0, 0, 125});
     DrawText("Galaga", (GetScreenWidth() / 2 - 237), 75, 144, WHITE);
@@ -223,6 +223,11 @@ void Program::KeyInputs()
 
     if (!startup && !paused && !gameOver && pauseFrames <= 0)
         player->keyInputs();
+
+    if (IsKeyPressed('K'))
+    {
+        UpdateScore(500);
+    }
 }
 
 void Program::PlayerReset()
@@ -247,4 +252,23 @@ void Program::Reset()
     count = 0;
     delay = 0;
     lives = 3;
+    score = 0;
+}
+
+void Program::UpdateScore(int points)
+{
+    score += points;
+}
+
+void Program::DrawScore(const char *text, float Xpos, float Ypos, float fontSize, float spacing, Color color, Font font)
+{
+    // Measures the text size with the given font and spacing
+    Vector2 size = MeasureTextEx(font, text, fontSize, spacing);
+
+    // if ((Xpos + size.x) > GetScreenWidth())
+    //     Xpos = GetScreenWidth() - size.x;
+    // if ((Ypos + size.y) > GetScreenHeight())
+    //     Ypos = GetScreenHeight() - size.y;
+
+    DrawTextEx(font, text, Vector2{Xpos, Ypos}, 0, fontSize, color);
 }

@@ -40,5 +40,9 @@ public:
     void PlayerReset();
     void Reset();
 
+    // score
+    void UpdateScore(int points);
+    void DrawScore(const char *text, float Xpos, float Ypos, float fontSize, float spacing, Color color, Font font = GetFontDefault());
+
     ~Program() {}
 };
