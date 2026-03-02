@@ -42,7 +42,7 @@ public:
 
     // score
     void UpdateScore(int points);
-    void DrawScore(const char *text, float Xpos, float Ypos, float fontSize, float spacing, Color color, Font font = GetFontDefault());
+    void DrawScore(int score, float Ypos, float fontSize, Color color, Font font = GetFontDefault());
 
     ~Program() {}
 };

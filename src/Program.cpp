@@ -1,4 +1,5 @@
 #include "Program.hpp"
+#include "raymath.hpp"
 
 Program::Program()
 {
@@ -115,7 +116,9 @@ void Program::Draw()
         if (p.second)
             p.second->draw();
 
-    DrawScore(TextFormat("%i", score), (GetScreenWidth() / 2), 20, 50, 2, WHITE);
+    //+++++++++++++++++++ The Holy Draw Score Function +++++++++++++++++++
+    DrawScore(score, 20.0f, 50.0f, WHITE);
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     if (startup)
         DrawStartup();
@@ -260,15 +263,17 @@ void Program::UpdateScore(int points)
     score += points;
 }
 
-void Program::DrawScore(const char *text, float Xpos, float Ypos, float fontSize, float spacing, Color color, Font font)
+void Program::DrawScore(int score, float Ypos, float fontSize, Color color, Font font)
 {
     // Measures the text size with the given font and spacing
-    Vector2 size = MeasureTextEx(font, text, fontSize, spacing);
+    Vector2 textSize = MeasureTextEx(font, TextFormat("%i", score), fontSize, fontSize * .1f);
 
-    // if ((Xpos + size.x) > GetScreenWidth())
-    //     Xpos = GetScreenWidth() - size.x;
-    // if ((Ypos + size.y) > GetScreenHeight())
-    //     Ypos = GetScreenHeight() - size.y;
+    // Centers the text horizontally on the screen
+    Vector2 textPos = Vector2{
+        // DO NOT TOUCH THE EXPRESSION ON THE X VALUE, IT JUST WORKS AND I HAVEN'T FIGURED OUT WHY
+        Lerp(0.0f, (float)GetScreenWidth() - textSize.x, 1.0f * .5f), // Magic math for centering based on the size of the text
+        Ypos};
 
-    DrawTextEx(font, text, Vector2{Xpos, Ypos}, 0, fontSize, color);
+    // Draws the text
+    DrawTextEx(font, TextFormat("%i", score), textPos, fontSize, fontSize * .1f, color);
 }
