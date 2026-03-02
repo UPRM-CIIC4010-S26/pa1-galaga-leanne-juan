@@ -237,6 +237,7 @@ void Program::Reset()
     count = 0;
     delay = 0;
     lives = 3;
+    ResetScore();
 }
 
 //=========================== Phase 1.3 ===========================
