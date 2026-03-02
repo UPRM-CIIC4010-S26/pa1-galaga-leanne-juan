@@ -17,7 +17,6 @@ protected:
 
 public:
     int health = 1;
-    int scoreValue = 10;
     std::pair<float, float> position;
     HitBox hitBox;
 
@@ -39,6 +38,7 @@ public:
     virtual void update(std::pair<float, float> pos, HitBox target) = 0;
     virtual void attack(HitBox target) = 0;
     virtual void onDeath() = 0;
+    virtual int getScore() = 0;
 
     void frameChange()
     {
@@ -76,7 +76,7 @@ public:
                     Animation::animations.push_back(
                         Animation(p.second->position.first, p.second->position.second, 155, 0, 33, 33, 30, 30, 4, ImageManager::SpriteSheet));
                     p.second->onDeath();
-                    pendingScores.push_back(p.second->scoreValue); // Add scoreValue to the score queue.
+                    pendingScores.push_back(p.second->getScore()); // Add scoreValue to the score queue.
                     p.second = nullptr;
                 }
             }

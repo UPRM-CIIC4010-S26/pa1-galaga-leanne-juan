@@ -52,4 +52,5 @@ public:
         }
     }
     void onDeath();
+    int getScore() override { return scoreValue; }
 };

@@ -24,4 +24,5 @@ public:
     void update(std::pair<float, float> pos, HitBox target) override;
     void attack(HitBox target) override;
     void onDeath();
+    int getScore() override { return scoreValue; }
 };
