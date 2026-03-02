@@ -69,6 +69,7 @@ void SpEnemy::update(std::pair<float, float> pos, HitBox target)
     else
     {
         this->attack(target);
+        this->attackInProgress = true;
     }
 
     if (this->cooldown <= 0)
@@ -76,6 +77,7 @@ void SpEnemy::update(std::pair<float, float> pos, HitBox target)
         Projectile::projectiles.push_back(Projectile(Projectile(position.first + 15, position.second, 1)));
         PlaySound(SoundManager::shoot);
         this->cooldown = GetRandomValue(360, 1380);
+        this->attackInProgress = false;
     }
 }
 

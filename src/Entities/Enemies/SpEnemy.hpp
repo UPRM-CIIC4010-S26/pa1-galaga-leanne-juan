@@ -15,6 +15,8 @@ private:
 
 public:
     int scoreValue = 150;
+    int scoreValueOnAttack = 400;
+    inline static bool attackInProgress = false;
     SpEnemy(float x, float y) : Enemy(x, y)
     {
         this->cooldown = GetRandomValue(300, 1380);
@@ -32,5 +34,11 @@ public:
     void update(std::pair<float, float> pos, HitBox target) override;
     void attack(HitBox target) override;
     void onDeath();
-    int getScore() override { return scoreValue; }
+    int getScore() override
+    {
+        if (attackInProgress)
+            return scoreValueOnAttack;
+        else
+            return scoreValue;
+    }
 };

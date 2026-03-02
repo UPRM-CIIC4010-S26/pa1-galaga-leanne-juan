@@ -15,6 +15,7 @@ private:
 
 public:
     int scoreValue = 50;
+    int scoreValueOnAttack = 100;
     inline static bool attackInProgress = false;
 
     StdEnemy(float x, float y) : Enemy(x, y)
@@ -52,5 +53,11 @@ public:
         }
     }
     void onDeath();
-    int getScore() override { return scoreValue; }
+    int getScore() override
+    {
+        if (attackInProgress)
+            return scoreValueOnAttack;
+        else
+            return scoreValue;
+    }
 };
