@@ -266,3 +266,23 @@ void Program::SpawnEnemiesOnGameStart()
     }
 }
 //=========================== Phase 1.3 ===========================
+
+void Program::UpdateScore(int points)
+{
+    score += points;
+}
+
+void Program::DrawScore(int score, float Ypos, float fontSize, Color color, Font font)
+{
+    // Measures the text size with the given font and spacing
+    Vector2 textSize = MeasureTextEx(font, TextFormat("%i", score), fontSize, fontSize * .1f);
+
+    // Centers the text horizontally on the screen
+    Vector2 textPos = Vector2{
+        // DO NOT TOUCH THE EXPRESSION ON THE X VALUE, IT JUST WORKS AND I HAVEN'T FIGURED OUT WHY
+        Lerp(0.0f, (float)GetScreenWidth() - textSize.x, 1.0f * .5f), // Magic math for centering based on the size of the text
+        Ypos};
+
+    // Draws the text
+    DrawTextEx(font, TextFormat("%i", score), textPos, fontSize, fontSize * .1f, color);
+}
