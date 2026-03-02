@@ -1,21 +1,29 @@
 #pragma once
 #include "Enemy.hpp"
 
-class StEnemy : public Enemy {
-    private: 
-        float angle = 90;
+//=============================================================
+//                         OGAWAMUSHI (SASORI)
+//=============================================================
 
-    public:
-        StEnemy(float x, float y) : Enemy(x, y) { 
-            this->cooldown = GetRandomValue(90, 600);
-        }
+class StEnemy : public Enemy
+{
+private:
+    float angle = 90;
 
-        StEnemy(float x, float y, bool newSpawn) : Enemy(x, y){
-            this->cooldown = GetRandomValue(120, 600);
-            this->spawning = newSpawn;
-        }
+public:
+    StEnemy(float x, float y) : Enemy(x, y)
+    {
+        this->cooldown = GetRandomValue(90, 600);
+    }
 
-        void draw() override;
-        void update(std::pair<float, float> pos, HitBox target) override;
-        void attack(HitBox target) override;
+    StEnemy(float x, float y, bool newSpawn) : Enemy(x, y)
+    {
+        this->cooldown = GetRandomValue(120, 600);
+        this->spawning = newSpawn;
+    }
+
+    void draw() override;
+    void update(std::pair<float, float> pos, HitBox target) override;
+    void attack(HitBox target) override;
+    void onDeath();
 };
