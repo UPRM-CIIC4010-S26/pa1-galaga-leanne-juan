@@ -46,6 +46,7 @@ public:
 
     // score
     void UpdateScore(int points);
+    void ResetScore() { score = 0; }
     void DrawScore(int score, float Ypos, float fontSize, Color color, Font font = GetFontDefault());
 
     ~Program() {}

@@ -208,6 +208,10 @@ void Program::KeyInputs()
     {
         UpdateScore(500);
     }
+    if (IsKeyPressed('L'))
+    {
+        ResetScore();
+    }
 }
 
 void Program::PlayerReset()
