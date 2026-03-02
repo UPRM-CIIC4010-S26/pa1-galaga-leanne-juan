@@ -22,6 +22,15 @@ private:
     int pauseFrames = 0;
     int score = 0;
 
+    enum difficulty
+    {
+        NORMAL = 0,
+        TRICKY = 2000,
+        DIFFICULT = 4000,
+        HARD = 6000
+    };
+    difficulty currentDifficulty = NORMAL;
+
     bool startup = true;
     bool paused = false;
     bool gameOver = false;
@@ -47,6 +56,8 @@ public:
     void UpdateScore(int points);
     void ResetScore() { score = 0; }
     void DrawScore(int score, float Ypos, float fontSize, Color color, Font font = GetFontDefault());
+
+    void DecreaseCooldownOnDifficulty(int score);
 
     ~Program() {}
 };

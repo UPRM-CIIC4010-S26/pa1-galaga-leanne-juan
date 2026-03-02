@@ -34,6 +34,7 @@ void Program::Update()
         }
         Enemy::pendingScores.clear();
         StdEnemy::attackReset();
+        DecreaseCooldownOnDifficulty(score);
         ManageEnemyRespawns();
         player->update();
 
@@ -295,4 +296,50 @@ void Program::DrawScore(int score, float Ypos, float fontSize, Color color, Font
 
     // Draws the text
     DrawTextEx(font, TextFormat("%i", score), textPos, fontSize, fontSize * .1f, color);
+}
+
+// In Program.cpp
+void Program::DecreaseCooldownOnDifficulty(int score)
+{
+    difficulty newDifficulty;
+
+    if (score >= HARD)
+        newDifficulty = HARD;
+    else if (score >= DIFFICULT)
+        newDifficulty = DIFFICULT;
+    else if (score >= TRICKY)
+        newDifficulty = TRICKY;
+    else
+        newDifficulty = NORMAL;
+
+    // Only update if difficulty changed
+    if (newDifficulty != currentDifficulty)
+    {
+        currentDifficulty = newDifficulty;
+
+        if (newDifficulty == TRICKY)
+        {
+            respawnCooldown = 1080 / 1.5f; // Use original value, not the current one
+            std::cout << "Difficulty increased: TRICKY\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else if (newDifficulty == DIFFICULT)
+        {
+            respawnCooldown = 1080 / 2.0f;
+            std::cout << "Difficulty increased: DIFFICULT\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else if (newDifficulty == HARD)
+        {
+            respawnCooldown = 1080 / 2.5f;
+            std::cout << "Difficulty increased: HARD\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else
+        {
+            respawnCooldown = 1080;
+            std::cout << "Difficulty: NORMAL\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+    }
 }
