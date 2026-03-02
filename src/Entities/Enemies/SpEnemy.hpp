@@ -14,6 +14,7 @@ private:
     bool stop = false;
 
 public:
+    int scoreValue = 150;
     SpEnemy(float x, float y) : Enemy(x, y)
     {
         this->cooldown = GetRandomValue(300, 1380);

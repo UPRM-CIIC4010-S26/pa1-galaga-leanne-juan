@@ -28,6 +28,11 @@ void Program::Update()
     if (!startup && !paused && !gameOver && pauseFrames <= 0)
     {
         Enemy::ManageEnemies(player->hitBox);
+        for (int pts : Enemy::pendingScores)
+        {
+            UpdateScore(pts);
+        }
+        Enemy::pendingScores.clear();
         StdEnemy::attackReset();
         ManageEnemyRespawns();
         player->update();

@@ -11,6 +11,7 @@ private:
     float angle = 90;
 
 public:
+    int scoreValue = 160;
     StEnemy(float x, float y) : Enemy(x, y)
     {
         this->cooldown = GetRandomValue(90, 600);

@@ -13,7 +13,7 @@ private:
     bool loop = false;
 
 public:
-    int scoreValue = 0;
+    int scoreValue = 160;
     DyEnemy(float x, float y) : Enemy(x, y)
     {
         this->cooldown = GetRandomValue(90, 300);

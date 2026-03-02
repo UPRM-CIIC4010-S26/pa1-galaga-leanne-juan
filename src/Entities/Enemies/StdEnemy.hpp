@@ -14,6 +14,7 @@ private:
     inline static int attackCooldown = 360;
 
 public:
+    int scoreValue = 50;
     inline static bool attackInProgress = false;
 
     StdEnemy(float x, float y) : Enemy(x, y)
