@@ -3,23 +3,28 @@
 #include "resource_dir.h"
 #include "Program.hpp"
 
-int main ()
+int screen_width = 1000;
+int screen_height = 1000;
+
+int main()
 {
 	SearchAndSetResourceDir("resources");
-    InitAudioDevice();
+	InitAudioDevice();
 	SetTargetFPS(60);
 
-	raylib::Window window(1000, 1000, "Galaga", FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
+	raylib::Window window(screen_width, screen_width, "Galaga", FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI);
 	Program Galaga;
 	ImageManager::Load();
 	SoundManager::Load();
 
-	if (!IsWindowReady()) {
-    TraceLog(LOG_ERROR, "Window failed to initialize!");
-    return 1;
-}
+	if (!IsWindowReady())
+	{
+		TraceLog(LOG_ERROR, "Window failed to initialize!");
+		return 1;
+	}
 
-	while (!WindowShouldClose()) {
+	while (!WindowShouldClose())
+	{
 		BeginDrawing();
 		ClearBackground(BLACK);
 
