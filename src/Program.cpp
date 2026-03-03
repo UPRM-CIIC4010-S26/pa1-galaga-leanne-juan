@@ -324,6 +324,12 @@ void Program::UpdateScore(int points)
         }
 
         ptsToGainLife += 1000;
+
+        // Slow down music back to normal speed if lives are no longer 1
+        if(lives > 1){
+
+            SetMusicPitch(SoundManager::bgm, 1.0f);
+        }
     }
 }
 
