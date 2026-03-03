@@ -16,6 +16,9 @@ Program::Program()
 
 void Program::Update()
 {
+    // Update bgm
+    UpdateMusicStream(SoundManager::bgm);
+
     for (Animation &a : Animation::animations)
         a.update();
     for (int i = 0; i < Animation::animations.size(); i++)
@@ -51,6 +54,13 @@ void Program::Update()
                 p.second->health = 0;
                 pauseFrames = 120;
                 lives--;
+
+                // Speed up music if only one life is left 
+                if(lives == 1){
+
+                    SetMusicPitch(SoundManager::bgm, 1.5f);
+                }
+                
             }
         }
 
@@ -70,6 +80,12 @@ void Program::Update()
             gameOver = true;
         Projectile::CleanProjectiles();
         Projectile::ProjectileCollision();
+    }
+
+    if(gameOver){
+
+        // End bgm when game is over
+        StopMusicStream(SoundManager::bgm);
     }
 }
 
@@ -195,11 +211,20 @@ void Program::KeyInputs()
     {
         gameOver = false;
         Reset();
+
+        // Play bgm when game resets (must unload and re-load at this point to avoid weird sound jump)
+        UnloadMusicStream(SoundManager::bgm);
+        SoundManager:: bgm = LoadMusicStream("audio/HowDidWeDo.ogg");
+        PlayMusicStream(SoundManager::bgm);
     }
 
     if (startup && IsKeyPressed(KEY_ENTER))
     {
         startup = false;
+
+        // Play bgm when game starts 
+        PlayMusicStream(SoundManager::bgm);
+        
     }
 
     if (!startup && !paused && !gameOver && pauseFrames <= 0)
@@ -225,6 +250,12 @@ void Program::PlayerReset()
     player->position.first = GetScreenWidth() / 2 - 15;
     pauseFrames = 120;
     lives--;
+
+    // Speed up music if only one life is left 
+    if(lives == 1){
+
+        SetMusicPitch(SoundManager::bgm, 1.5f);
+    }
 }
 
 void Program::Reset()

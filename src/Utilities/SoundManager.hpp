@@ -9,12 +9,18 @@ class SoundManager {
     static inline Sound hit;
     static inline Sound shoot;
 
+    // Add bgm
+    static inline Music bgm;
+
     static void Load() {
         attack = LoadSound("audio/attack.mp3");
         dead = LoadSound("audio/dead.mp3");
         gameOver = LoadSound("audio/gameOver.mp3");
         hit = LoadSound("audio/hit.mp3");
         shoot = LoadSound("audio/shoot.mp3");
+
+        // Load bgm
+        bgm = LoadMusicStream("audio/HowDidWeDo.ogg");
     }
 
     static void Unload() {
@@ -22,6 +28,8 @@ class SoundManager {
         UnloadSound(dead);
         UnloadSound(gameOver);
         UnloadSound(hit);
-        UnloadSound(shoot);
+
+        // Unload bgm
+        UnloadMusicStream(bgm);
     }
 };

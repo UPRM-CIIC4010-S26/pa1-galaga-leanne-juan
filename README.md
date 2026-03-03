@@ -22,3 +22,16 @@ If a partner has no commits in the repositories, they will receive a 0.
 
 ## Student Notes
 If you have any bonus specs, bonus or any details the TA's should know, you should include it here:
+
+BONUS:
+
+- Added background music
+Track is from the 16-Bit Starter Pack and used under a non-exclusive license.
+Credit: "Music composed by Bert Cole"
+Homepage: https://bitbybitsound.com
+
+- Background music will speed up when only one life is left to indicate a danger zone.
+- Background music will go back to normal speed if player gains a life and is no longer in the
+  danger zone.
+
+
