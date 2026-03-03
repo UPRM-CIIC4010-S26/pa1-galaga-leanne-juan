@@ -269,6 +269,10 @@ void Program::Reset()
     count = 0;
     delay = 0;
     lives = 3;
+
+    // Reset new variable 
+    ptsToGainLife = 1000;
+    
     ResetScore();
 }
 
