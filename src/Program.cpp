@@ -312,6 +312,19 @@ void Program::SpawnEnemiesOnGameStart()
 void Program::UpdateScore(int points)
 {
     score += points;
+
+    // Add feature to gain a life everytime you score 1000 points (5 max lives)
+    if(score >= ptsToGainLife){
+
+        lives++;
+        
+        if(lives > 5){
+
+            lives = 5;
+        }
+
+        ptsToGainLife += 1000;
+    }
 }
 
 void Program::DrawScore(int score, float Ypos, float fontSize, Color color, Font font)

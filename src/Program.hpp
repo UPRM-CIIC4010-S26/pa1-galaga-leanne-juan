@@ -22,6 +22,9 @@ private:
     int pauseFrames = 0;
     int score = 0;
 
+    // Establish threshold to gain lives
+    int ptsToGainLife = 1000;
+
     enum difficulty
     {
         NORMAL = 0,
