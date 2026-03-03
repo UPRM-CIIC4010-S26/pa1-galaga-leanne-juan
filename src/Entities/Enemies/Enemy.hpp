@@ -66,6 +66,12 @@ public:
                     {
                         p.second->health--;
                         p2.del = true;
+
+                        // Play hit sound
+                        if(p.second->health > 0){
+
+                            PlaySound(SoundManager::hit);
+                        }
                     }
                 }
 
@@ -78,6 +84,9 @@ public:
                     p.second->onDeath();
                     pendingScores.push_back(p.second->getScore()); // Add scoreValue to the score queue.
                     p.second = nullptr;
+
+                    // Play dead sound
+                    PlaySound(SoundManager::dead);
                 }
             }
         }
