@@ -25,7 +25,7 @@ If you have any bonus specs, bonus or any details the TA's should know, you shou
 
 BONUS:
 
-- Added background music
+- Added background music.
 Track is from the 16-Bit Starter Pack and used under a non-exclusive license.
 Credit: "Music composed by Bert Cole"
 Homepage: https://bitbybitsound.com
@@ -33,5 +33,8 @@ Homepage: https://bitbybitsound.com
 - Background music will speed up when only one life is left to indicate a danger zone.
 - Background music will go back to normal speed if player gains a life and is no longer in the
   danger zone.
+
+- Added heart icons for lives.
+  (We later noticed this was already implemented as ships on the bottom left corner of the screen but you can't really see them because the game screen is too big to fit on the computer screen... so we left the hearts anyway)
 
 

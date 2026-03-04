@@ -104,6 +104,14 @@ void Program::Draw()
                        Vector2{0, 0}, 0, WHITE);
     }
 
+    // Draw heart icons for lives
+    for (int i = 0; i < lives; i++)
+    {
+        DrawTexturePro(ImageManager::Heart, Rectangle{0, 0, 100, 100},
+                       Rectangle{10.0f + i * 30, GetScreenHeight() * 0.01f, 50, 50},
+                       Vector2{0, 0}, 0, WHITE);
+    }
+
     for (Projectile p : Projectile::projectiles)
         p.draw();
     for (std::pair<std::pair<float, float>, Enemy *> &p : Enemy::enemies)
