@@ -137,7 +137,32 @@ void Program::ManageEnemyRespawns()
     respawnCooldown -= 1;
     if (respawnCooldown <= 0)
     {
-        respawnCooldown = 1080;
+        // Reset difficulty to current difficulty based on score 
+        if (currentDifficulty == TRICKY)
+        {
+            respawnCooldown = 1080 / 4.0f; // Use original value, not the current one
+            std::cout << "Difficulty increased: TRICKY\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else if (currentDifficulty == DIFFICULT)
+        {
+            respawnCooldown = 1080 / 4.5f;
+            std::cout << "Difficulty increased: DIFFICULT\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else if (currentDifficulty == HARD)
+        {
+            respawnCooldown = 1080 / 5.0f;
+            std::cout << "Difficulty increased: HARD\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+        else
+        {
+            respawnCooldown = 1080;
+            std::cout << "Difficulty: NORMAL\n"
+                      << "Respawn cooldown: " << respawnCooldown << std::endl;
+        }
+
         for (std::pair<std::pair<float, float>, Enemy *> &p : Enemy::enemies)
         {
             if (!p.second && p.first.second != 150)
@@ -378,30 +403,6 @@ void Program::DecreaseCooldownOnDifficulty(int score)
     if (newDifficulty != currentDifficulty)
     {
         currentDifficulty = newDifficulty;
-
-        if (newDifficulty == TRICKY)
-        {
-            respawnCooldown = 1080 / 1.5f; // Use original value, not the current one
-            std::cout << "Difficulty increased: TRICKY\n"
-                      << "Respawn cooldown: " << respawnCooldown << std::endl;
-        }
-        else if (newDifficulty == DIFFICULT)
-        {
-            respawnCooldown = 1080 / 2.0f;
-            std::cout << "Difficulty increased: DIFFICULT\n"
-                      << "Respawn cooldown: " << respawnCooldown << std::endl;
-        }
-        else if (newDifficulty == HARD)
-        {
-            respawnCooldown = 1080 / 2.5f;
-            std::cout << "Difficulty increased: HARD\n"
-                      << "Respawn cooldown: " << respawnCooldown << std::endl;
-        }
-        else
-        {
-            respawnCooldown = 1080;
-            std::cout << "Difficulty: NORMAL\n"
-                      << "Respawn cooldown: " << respawnCooldown << std::endl;
-        }
+        
     }
 }

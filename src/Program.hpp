@@ -28,9 +28,9 @@ private:
     enum difficulty
     {
         NORMAL = 0,
-        TRICKY = 2000,
-        DIFFICULT = 4000,
-        HARD = 6000
+        TRICKY = 1000,
+        DIFFICULT = 2000,
+        HARD = 3000
     };
     difficulty currentDifficulty = NORMAL;
 
